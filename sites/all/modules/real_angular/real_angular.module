@@ -1,0 +1,119 @@
+<?php
+function real_angular_menu() {
+    $items = array();
+    $items['home_search'] = array(
+        'title' => t('Home Search'),
+        'page callback' => 'real_angular_search',
+        'access arguments' => array('access content'),
+    );
+
+
+    return $items;
+}
+function real_angular_theme() {
+    $themes = array();
+    $themes['real_angular'] = array(
+      'template' => 'themes/real_angular',
+      'parameters' => array(),
+      'variables' => array(
+        'agentNID' => NULL,
+        'agentPicture' => NULL,
+        'title' => NULL,
+        'agentMID' => NULL,
+        'facebook' => NULL,
+        'email' => NULL,
+        'phone' => NULL,
+      ),
+    );
+    return $themes;
+}
+function real_angular_search() {
+    angularjs_init_application('real_angular');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/misc/lodash.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/misc/angular-google-maps.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/misc/angular-simple-logger.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/controller/retsMap.controller.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/controller/infoWindow.controller.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/directives/retsSearchForm.directive.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/directives/retsSearchResults.directive.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/services/retsAPI.service.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/app.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/custom.js');
+    //drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/jquery-3.1.1.min.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/bootstrap-select.min.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/isteven-multi-select.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/rzslider.min.js');
+    
+    
+    drupal_add_css(drupal_get_path('module', 'real_angular') . '/css/bootstrap-select.min.css');
+    drupal_add_css(drupal_get_path('module', 'real_angular') . '/css/isteven-multi-select.css');
+    drupal_add_css(drupal_get_path('module', 'real_angular') . '/css/rzslider.min.css');
+/*     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/simple-autocomplete.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/sample.js'); */
+
+    $query = db_select('node', 'n');
+    $query->join('field_data_field_mls_agent_id', 'aid', 'n.nid = aid.entity_id');
+    $query->join('field_data_field_agent_image', 'iid', 'n.nid = iid.entity_id');
+    $query->join('file_managed', 'f', 'iid.field_agent_image_fid = f.fid');
+    $query->join('field_data_field_facebook', 'fb', 'n.nid = fb.entity_id');
+    $query->join('field_data_field_email', 'e', 'n.nid = e.entity_id');
+    $query->join('field_data_field_phone', 'p', 'n.nid = p.entity_id');
+    $results = $query
+        ->fields('n', array('nid', 'title'))
+        ->fields('aid', array('field_mls_agent_id_value'))
+        ->fields('iid', array('field_agent_image_fid'))
+        ->fields('f', array('uri'))
+        ->fields('fb', array('field_facebook_value'))
+        ->fields('e', array('field_email_email'))
+        ->fields('p', array('field_phone_value'))
+        ->condition('n.type', 'homesinboise_team')
+        ->range(0,1)
+        ->orderRandom()
+        ->execute()
+        ->fetchAssoc();
+//
+//    var_dump($results);
+//    var_dump($results['nid']);
+    return theme('real_angular', array(
+      'agentNID' => $results['nid'],
+      'agentPicture' => file_create_url($results['uri']),
+      'title' => $results['title'],
+      'agentMID' => $results['field_mls_agent_id_value'],
+      'facebook' => $results['field_facebook_value'],
+      'email' => $results['field_email_email'],
+      'phone' => $results['field_phone_value'],
+    ));
+}
+
+function real_angular_display() {
+
+    return drupal_get_form('real_angular_form');
+}
+function real_angular_form($form, &$form_state) {
+    $form['L_ListingID'] = array(
+        '#type' => 'textfield',
+        '#title' => 'MLS Number',
+        '#attributes' => array(
+            'ng-change' => array('retsFormChange()'),
+            'ng-model' => array('form.L_ListingID')
+        )
+    );
+    $form['L_Keyword2'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Beds',
+        '#attributes' => array(
+            'ng-change' => array('retsFormChange()'),
+            'ng-model' => array('form.L_Keyword2')
+        )
+    );
+//    $form['retsSearchMarkup'] = array(
+//        '#type' => 'item',
+//        '#ng_controller' => 'RetsSearchCtrl',
+//        '#markup' => '<div rets-search-form>Majellin!</div>'
+//    );
+//    $form['submit'] = array(
+//        '#type' => 'submit',
+//        '#value' => 'Submit that shit!'
+//    );
+    return $form;
+}
