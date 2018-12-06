@@ -72,7 +72,7 @@ function timeAgo($time) {
                         <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                 background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
                         </div>
-                        <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                        <div style="position: absolute; display: block; background: url('/sites/all/libraries/vegas/images/loading.gif') no-repeat center center;
                 top: 0px; left: 0px;width: 100%;height:100%;">
                         </div>
                       </div>
@@ -150,7 +150,7 @@ function timeAgo($time) {
 <!--            <h2 class="moreInfoBlock">Want More Information?</h2>-->
             <div class="moreInformationBlock">
               <?php $webform = module_invoke('webform', 'block_view', 'webform-client-form-5');
-              print $webform['content']; ?>
+              print render($webform['content']); ?>
               <?php //print render(module_invoke('webform', 'block_view', 'client-block-29')['content']); ?>
 
             </div>
