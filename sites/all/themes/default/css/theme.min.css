@@ -1080,15 +1080,17 @@ section.home_block_slider .slick {
 }
 
 .page-listings .emailSlideContainer {
-    position: fixed;
-    bottom: -523px;
+ /*   position: fixed;
+    bottom: -778px;
+*/
 }
 
 .emailSlideContainer {
     position: fixed;
-    bottom: -503px;
+    bottom: -703px;
     right: 17px;
-    transition: all .3s ease
+    transition: all .3s ease;
+    z-index: 999;
 }
 
 .emailSlideContainer .emailSlideContainerInner .emailSlideTab {
@@ -1099,7 +1101,13 @@ section.home_block_slider .slick {
     padding: 10px;
     border-radius: 13px 13px 0 0;
     cursor: pointer;
-    width: 170px
+    width: 170px;
+}
+.emailSlideContainer .help-block {
+    display: none !important;
+}
+.emailSlidecontainer .panel-heading {
+    display: none !important;
 }
 
 .emailSlideContainer .emailSlideContainerInner .emailSlideTab i {
@@ -1107,7 +1115,7 @@ section.home_block_slider .slick {
 }
 
 .emailSlideContainer .emailSlideContainerInner .emailSlideForm {
-    width: 250px;
+    width: 350px;
     padding: 10px;
     background: #fff;
     border-top: 1px solid #ccc;
