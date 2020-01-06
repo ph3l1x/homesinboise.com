@@ -68,8 +68,25 @@ jQuery(document).ready(function($) {
 
 
     // Home Page Search Button
+
     $('.rets-search-button').on('click', function () {
-        window.location.replace("/home_search#?query=" + $('.rets-search-input').val());
+   //     window.location.replace("/home_search#?query=" + $('.rets-search-input').val());
+      if($('.rets-search-input').val()) {
+        var query = $('.rets-search-input').val();
+        console.log(isNaN(query));
+        if(query.length == 5 && !isNaN(query)) {
+         window.open("https://homesinboise.silvercreekrealty.com/results-gallery?postalcode=" + query, '_blank');
+          // console.log("Length: ", query.length);
+        } else if(query.length == 8) {
+          window.open("https://homesinboise.silvercreekrealty.com/results-gallery?keyword=" + query, '_blank');
+          // console.log("LENGTH: ", query.length);
+        } else {
+          window.open("https://homesinboise.silvercreekrealty.com/results-gallery?keyword=" + query, '_blank');
+        }
+
+        console.log("XXXX");
+      }
+     // window.location.replace("https://homesinboise.silvercreekrealty.com/results-gallery#?query=" + $('.rets-search-input').val());
     });
 
     // Contact Us Slider
@@ -77,4 +94,12 @@ jQuery(document).ready(function($) {
        $('.emailSlideContainer').toggleClass('email-sliding');
         $('.emailSlideContainer i').toggleClass('fa-arrow-down fa-arrow-up');
     });
+
+
+
+    // make homes for heroes link open in new window
+  $('#menu-614-1 a').attr('target','_blank');
+
+
 });
+

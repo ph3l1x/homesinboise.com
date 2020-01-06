@@ -1320,3 +1320,123 @@ section#block-block-12 img {
     padding-right: 20px;
     max-height: 50px;
 }
+section#block-block-14 h2 {
+  font-family: Ubuntu, sans-serif;
+  font-size: 32px;
+  color: #444;
+  margin: 30px 0 30px 15px;
+}
+.city-picture img {
+  height: 220px;
+}
+.city-box {
+  padding: 10px;
+  background: #fff;
+  border-radius: 2px;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #c8c8c8;
+  -webkit-box-shadow: inset 0 -2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 -2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
+  position: relative;
+  margin-right: 12px;
+  margin-bottom: 12px;
+}
+.city-box:hover {
+  box-shadow: 0 0 2px 1px rgba(78, 98, 126, 0.65);
+}
+#block-block-14 h2.block-title {
+  display: none;
+}
+.city-name {
+  color: #882719;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.city-box button {
+  text-align: center;
+  background-color: #882719;
+  color: white;
+  border: none;
+  margin: 0 auto;
+  padding: 8px 12px;
+}
+.city-listings {
+  text-align: center;
+}
+#block-block-14 {
+  margin-bottom: 30px;
+}
+
+/* home for heroes page */
+
+.no-pad {
+  padding-left: 0px;
+}
+.what_doing .form-item {
+  display: inline;
+  padding: 0 30px 0 0;
+}
+h2.hero_form {
+  color: #001e56;
+  text-align: center;
+  font-size: 40px;
+  margin: 20px 0 40px 0;
+}
+h2.hero_form span {
+  font-size: 16px;
+  top: -17px;
+  position: relative;
+}
+.hero_circles div {
+  text-align: center;
+}
+.hero_circles p {
+  color: #b5121b;
+  font-size: 21px;
+  font-weight: bold;
+  padding: 20px 10px;
+}
+.heroes_text {
+  text-align: center;
+  color: #001e56;
+  font-size: 25px;
+  max-width: 801px;
+  margin: 0 auto;
+  padding: 20px 0 30px 0;
+}
+.some_hero_text {
+  color: #001e56;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 0 30px 0;
+  font-size: 18px;
+}
+@media only screen and (max-width: 767px) {
+  .city-guides {
+    float: left;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  #superfish-1-accordion li {
+    background-color: black;
+    padding: 9px 9px;
+    /*border-bottom: 1px solid #882719;*/
+  }
+  #superfish-1-accordion li a {
+    color: #882719;
+  }
+  .input-group-btn {
+    display: none;
+  }
+}
+.views-row-last {
+	width: 100% !important;
+}
+.views-row-last .views-field-field-bio {
+  	width: 33.3333%;
+}
