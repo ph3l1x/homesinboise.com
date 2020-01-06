@@ -1,4 +1,15 @@
 <?php
+
+
+//function real_listings_element_info_alter(&$info) {
+//  // You might want more advanced logic here, to replace instead of override altogether,
+//  // in case other modules have already altered the core info.
+//  $info['radios']['#process'] = array('real_listings_process_radios');
+//}
+//
+
+
+
 function real_listings_menu() {
   $items = array();
   $items['listings/%'] = array(
